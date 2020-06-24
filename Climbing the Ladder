@@ -1,0 +1,34 @@
+vector<int> climbingLeaderboard(vector<int> scores, vector<int> alice) {
+//sort(scores.begin(),scores.end());
+scores.erase(unique(scores.begin(),scores.end()),scores.end());
+vector<int> result;
+int j=0;
+for(int i=0;i<alice.size();i++){
+    int flag=0;
+    for(j=0;j<scores.size();j++){
+        
+        if(alice[i]>scores[j]){
+            result.push_back(j+1);
+            flag=1;
+        }
+        if(alice[i]==scores[j]){
+            result.push_back(j+1);
+            flag=1;
+        }
+        
+        if(flag){
+            break;
+        }
+        // if(alice[i] == score[i]){
+        //     result.push_back(i+1);
+        // }
+    }
+    if(j==scores.size() && flag==0){
+            result.push_back(j+1);
+        }
+}
+// for(int i=0;i<result.size();i++){
+//     cout<<result[i]<<endl;
+// }
+return result;
+}
