@@ -1,0 +1,26 @@
+int pickingNumbers(vector<int> a) {
+sort(a.begin(),a.end());
+vector<int> t;
+
+int result=0,count=1;
+int f=a[0];
+
+for(int i=1;i<a.size();i++){
+    if(a[i]==f || f+1==a[i]){
+        count++;
+    }
+    else
+    {
+        if(count > result)
+        {
+            result=count;
+        }
+        count=1;
+        f=a[i];
+    }
+}
+if(count>result){
+    result=count;
+}
+return result; 
+}
