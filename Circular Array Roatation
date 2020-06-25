@@ -1,0 +1,62 @@
+void cirreverse(vector<int>& a){
+    int t=a[a.size()-1];
+    for(long unsigned int i=a.size()-1;i>=1;i--){
+    a[i]=a[i-1];
+
+}
+a[0]=t;
+}
+
+void revRot(vector<int>& a){                          /////if we did not use the reverse one then time limit exceeded.
+  int t=a[0];
+  for(long unsigned int i=0;i<a.size()-1;i++){
+      a[i]=a[i+1];
+  }
+ a[a.size()-1]=t;
+}
+// Complete the circularArrayRotation function below.
+vector<int> circularArrayRotation(vector<int> a, int k, vector<int> queries) {
+    k=k%a.size();
+   if(k>(a.size()/2)){
+       k=a.size()-k;
+       while(k--){
+            revRot(a);
+       }
+   }
+   else{
+       while(k--){
+           cirreverse(a);
+       }
+   }
+   vector<int> result;
+   for(long unsigned int i=0;i<queries.size();i++){
+        result.push_back(a[queries[i]]);
+   }
+    return result;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/************NOT MINE **********/
+#include <math.h>
+#include <stdio.h>
+
+
+int main() {
+    int n, k, q;
+    scanf("%d", &n);
+    scanf("%d", &k);
+    scanf("%d", &q);
+    int data[n];
+    for(int i=0; i<n; i++) scanf("%d", &data[i]);
+    k = k % n;
+    while(q--) {
+        int x;
+        scanf("%d", &x);
+        x = x - k;
+        if(x < 0) x = x + n;
+        printf("%d\n", data[x]);
+    }
+    return 0;
+}
