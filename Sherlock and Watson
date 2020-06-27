@@ -1,0 +1,14 @@
+int squares(int a, int b) {
+        int counter=sqrt(a);
+        int result=0;
+        while(counter<=sqrt(b)){
+            if(counter*counter>=a && counter*counter<=b){
+                    result++;
+                  
+
+            }
+            counter++;
+
+        }
+    return result; 
+}
