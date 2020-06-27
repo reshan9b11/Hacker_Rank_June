@@ -1,0 +1,30 @@
+int nonDivisibleSubset(int k, vector<int> s) {
+int result[k];
+int res;
+int n=s.size();
+
+for(int i=0;i<k;i++){
+    result[i]=0;
+}
+for(int i=0;i<n;i++){
+        result[s[i]%k]+=1;
+}
+res= min(result[0],1);
+//res=0;
+
+for(int i=1;i<k/2 +1;i++){
+        if((i!=k-i) /*&& result[i]>=1*/){
+
+             res += (result[i] >= result[k-i]) ? result[i] : result[k-i];
+        //     res++;
+        // } 
+        // else{
+        //     res += (result[i] > result[k-i]) ? result[i] : result[k-i];
+        // }
+        }
+}
+if(k%2==0){
+    res++;
+}
+return res;
+}
