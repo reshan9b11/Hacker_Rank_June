@@ -1,0 +1,72 @@
+int jumpingOnClouds(vector<int> c, int k) {
+        int result=100;
+        int n=c.size();
+      //  int start=1;
+       // int i=0;
+        int temp=0;
+        while((temp+k)%n != 0){
+            temp=(temp+k)%n;
+
+            // if(temp==0){
+            //     break;
+            // }
+            // if(temp>n){
+            //     temp=temp%n;
+            // }
+            
+            if(c[temp]==1){
+                result-=2;
+            }
+            // }
+            // else{
+            //     result-=1;
+            // }
+                result-=1;
+        
+        //i++;
+        }
+        c[0]==1 ? result=result-3: result=result-1;
+return result;
+}
+
+///////////////////////////////////////
+////////////////////////////////////
+/*Emma is playing a new mobile game that starts with consecutively numbered clouds. Some of the clouds are thunderheads and others are cumulus. She can jump on any cumulus cloud having a number that is equal to the number of the current cloud plus 1 or 2. She must avoid the thunderheads. Determine the minimum number of jumps it will take Emma to jump from her starting postion to the last cloud. It is always possible to win the game.
+
+For each game, Emma will get an array of clouds numbered 0 if they are safe or 1 if they must be avoided. For example, c = [0, 1, 0, 0, 0, 1, 0] indexed from 0...6. The number on each cloud is its index in the list so she must avoid the clouds at indexes 1 and 5. She could follow the following two paths: 0-2, 2-4, 4-6 or 0-2, 2-3, 3-4, 4-6. The first path takes 3 jumps while the second takes 4.
+
+
+
+*/
+
+//////////////////////////////////////
+
+int jumpingOnClouds(vector<int> c) {
+
+ int cc=0;
+ int i=0;
+int n=c.size();
+int r=0;
+while(i<n-1){
+
+    if(c[i+2]==0){
+         i=i+2;
+        cc++;
+        continue;
+    }
+    else if(c[i+1]==0){
+        i+=1;
+        cc++;
+        continue;
+    }
+    //i++;
+}
+
+// for(int i=0;i<n;i++){
+//     if(c[i]==1){
+//         cc++;
+//     }
+// }
+ return cc;
+
+}
