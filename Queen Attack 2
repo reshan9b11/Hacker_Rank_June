@@ -1,0 +1,52 @@
+ Complete the queensAttack function below.
+int queensAttack(int n, int k, int r_q, int c_q, vector<vector<int>> obstacles) {
+ int d11, d12, d21, d22, r1, r2, c1, c2; 
+  
+    // Initialise the distance to end of the board. 
+    d11 = min( r_q-1, c_q-1 ); 
+    d12 = min( n-r_q, n-c_q ); 
+    d21 = min( n-r_q, c_q-1 ); 
+    d22 = min( r_q-1, n-c_q ); 
+  
+    r1 = c_q-1; 
+    r2 = n-c_q; 
+    c1 = r_q-1; 
+    c2 = n-r_q; 
+  
+    // For each obstacle find the minimum distance. 
+    // If obstacle is present in any direction, 
+    // distance will be updated. 
+    for (int i = 0; i < k; i++) 
+    { 
+        if ( r_q > obstacles[0][i] && c_q > obstacles[i][1] && 
+                 r_q-obstacles[0][i] == c_q-obstacles[i][1] ) 
+            d11 = min(d11, r_q-obstacles[0][i]-1); 
+  
+        if ( obstacles[0][i] > r_q && obstacles[i][1] > c_q && 
+                  obstacles[0][i]-r_q == obstacles[i][1]-c_q ) 
+            d12 = min( d12, obstacles[0][i]-r_q-1); 
+  
+        if ( obstacles[0][i] > r_q && c_q > obstacles[i][1] && 
+                  obstacles[0][i]-r_q == c_q-obstacles[i][1] ) 
+            d21 = min(d21, obstacles[0][i]-r_q-1); 
+  
+        if ( r_q > obstacles[0][i] && obstacles[i][1] > c_q && 
+                    r_q-obstacles[0][i] == obstacles[i][1]-c_q ) 
+                    d22 = min(d22, r_q-obstacles[0][i]-1); 
+  
+        if ( r_q == obstacles[0][i] && obstacles[i][1] < c_q ) 
+            r1 = min(r1, c_q-obstacles[i][1]-1); 
+  
+        if ( r_q == obstacles[0][i] && obstacles[i][1] > c_q ) 
+            r2 = min(r2, obstacles[i][1]-c_q-1); 
+  
+        if ( c_q == obstacles[i][1] && obstacles[0][i] < r_q ) 
+            c1 = min(c1, r_q-obstacles[0][i]-1); 
+  
+        if ( c_q == obstacles[i][1] && obstacles[0][i] > r_q ) 
+            c2 = min(c2, obstacles[0][i]-r_q-1); 
+    } 
+  
+    return d11 + d12 + d21 + d22 + r1 + r2 + c1 + c2; 
+
+}
