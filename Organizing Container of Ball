@@ -1,0 +1,40 @@
+string organizingContainers(vector<vector<int>> container) {
+        vector<int> row;
+        vector<int> col;
+        int n=container.size();
+//         for(int i=0;i<n;i++)
+// {        row.push_back(0);
+//         col.push_back(0);
+// }
+        
+//         for(int i=0;i<n;i++){
+//            row[i]=container[0][i] + row[i];
+//         }
+//         for(int i=0;i<n;i++){
+//            col[i]=container[i][1] +col[i];
+//         }
+
+        for(int i = 0; i < n; i++){
+                int rowSum = 0;
+                int colSum = 0;
+                for(int j = 0; j < n; j++){
+                    rowSum += container[i][j]; 
+                    colSum += container[j][i];
+                }
+                col.push_back(colSum);
+                row.push_back(rowSum);
+            }
+            
+
+        sort(row.begin(),row.end());
+        sort(col.begin(),col.end());
+            int flag=1;
+        for(int i=0;i<n;i++){
+            if(row[i]!=col[i]){
+                flag=0;
+                break;
+            }
+        }
+        return flag==1 ? "Possible":"Impossible";
+
+}
